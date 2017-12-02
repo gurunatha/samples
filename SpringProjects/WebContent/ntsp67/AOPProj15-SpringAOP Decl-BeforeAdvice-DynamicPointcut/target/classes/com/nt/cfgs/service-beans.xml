@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+  <!-- target /service class -->
+  <bean id="iac"  class="com.nt.service.IntrAmountCalculator"/>
+  
+  <bean id="authManager"  class="com.nt.service.AuthenticationManager">
+     <property name="dao" ref="authDao"/>
+  </bean>
+
+</beans>

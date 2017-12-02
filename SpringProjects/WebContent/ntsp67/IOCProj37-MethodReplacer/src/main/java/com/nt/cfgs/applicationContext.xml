@@ -1,0 +1,18 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="imr"   class="com.nt.replacer.IntrestRateReplacer">
+   <property name="rate"  value="1.0"/>
+</bean>
+
+<bean id="service"  class="com.nt.beans.BankService">
+   <!--  <replaced-method name="calcIntrAmount"   replacer="imr">
+       <arg-type>float</arg-type>
+       <arg-type>float</arg-type>
+    </replaced-method>  -->
+</bean>
+
+</beans>

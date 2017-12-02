@@ -1,0 +1,21 @@
+<beans  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- <bean id="serviceLocator"  class="com.nt.serviceLocator.ICCScoreCompServiceLocator"  factory-method="getService">
+   <constructor-arg value="iccJndi"/>
+</bean>
+<bean id="crickBuzzService"  class="com.nt.service.CrickBuzzFindScoreServiceImpl">
+   <property name="extComp"  ref="serviceLocator"/>
+</bean>
+ -->
+  <bean id="serviceLocator"  class="com.nt.serviceLocator.ICCScoreCompServiceLocator"/>
+   <bean id="extServiceComp"  factory-bean="serviceLocator" factory-method="getService">
+     <constructor-arg value="iccJndi"/>
+   </bean>
+ <bean id="crickBuzzService"  class="com.nt.service.CrickBuzzFindScoreServiceImpl">
+    <property name="extComp"  ref="extServiceComp"/>
+</bean>
+ 
+</beans>

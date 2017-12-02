@@ -1,0 +1,88 @@
+ <beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="st" class="com.nt.beans.Student">
+    <property name="marks">
+      <list>
+        <value>20</value>
+        <value>30</value>
+        <value>60</value>
+       </list>
+    </property>
+  </bean>
+  <bean id="dt"  class="java.util.Date"/>
+  <bean id="pDetails" class="com.nt.beans.PersonDetails">
+     <property name="names">
+       <list>
+         <value>raja</value>
+         <value>rani</value>
+         <value>raja</value>
+         <value>ravi</value>
+       </list>
+     </property>
+     <property name="data">
+      <list>
+       <value>raja</value>
+       <ref bean="dt"/>
+       </list>
+     </property>
+  </bean>
+  <bean id="cpi"  class="com.nt.beans.CompanyPhonesInfo">
+    <property name="phones">
+       <set>
+         <value>999999999</value>
+         <value>888888888</value>
+         <value>888888888</value>
+       </set>
+    </property>
+    <property name="data">
+      <set>
+         <value>raja</value>
+         <value>777777777</value>
+         <ref bean="dt"/>
+      </set>
+    </property>
+  </bean>
+  <bean id="fi"  class="com.nt.beans.FacultyInfo">
+     <property name="facultySubjects">
+        <map>
+          <entry  key="raja"  value="java"/>   <!-- element 0 -->
+          
+          <entry>  <!-- element1 -->
+             <key><value>ravi</value></key>
+             <value>.net</value>
+          </entry>
+          
+          <entry  key="jani">
+            <value>oracle</value>
+          </entry>
+        </map>
+     </property>
+     <property name="data">
+         <map>
+           <entry key="apple"  value="red"/>
+           <entry key="today"  value-ref="dt"/>
+           <entry key-ref="dt"  value-ref="dt"/>
+           <entry>
+             <key><value>today1</value></key>
+             <ref bean="dt"/>
+           </entry>
+         
+         </map>
+     </property>
+     
+  </bean>
+ <bean id="di"  class="com.nt.beans.DoctorsInfo">
+    <property name="doctors">
+       <props>
+         <prop key="mahesh">physician</prop>
+         <prop key="ramesh">Dentist</prop>
+         <prop key="naresh">Cardio</prop>
+       </props>
+    </property>
+ 
+ </bean>
+ 
+ </beans>

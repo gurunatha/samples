@@ -1,0 +1,17 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="aadhar"  class="com.nt.beans.AadharDetails">
+     <property name="uid"  value="1001"/>
+     <property name="name"  value="raja"/>
+     <property name="age"  value="30.56f"/>
+     <property name="verifiers"  value="rahul,modi"/>
+     <property name="dob" value="10/22/1990"/>
+     <property name="photo" value="e:/photos/img.jpg"/>
+  </bean>
+
+</beans>
+

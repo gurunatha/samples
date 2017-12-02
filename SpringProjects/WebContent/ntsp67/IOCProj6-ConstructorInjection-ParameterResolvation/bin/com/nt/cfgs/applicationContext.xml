@@ -1,0 +1,27 @@
+ <beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- Resolving constructor args using index -->
+  <bean id="mks"  class="com.nt.beans.Marks">
+      <constructor-arg index="2" value="30"/>
+      <constructor-arg index="0" value="50"/>
+      <constructor-arg index="1" value="60"/>
+  </bean>
+  
+   <!-- Resolving constructor args using type -->
+  <!--  <bean id="stDetails"  class="com.nt.beans.StudentDetails">
+      <constructor-arg type="java.lang.String"  value="raja"/>
+      <constructor-arg type="int" value="1001"/>
+          <constructor-arg  type="float" value="70.35f"/>
+  </bean> -->
+  
+  <!-- Resolving constructor args using name -->
+   <bean id="stDetails"  class="com.nt.beans.StudentDetails">
+      <constructor-arg name="stname"  value="raja"/>
+      <constructor-arg name="sno" value="1001"/>
+          <constructor-arg  name="avg" value="70.35f"/>
+  </bean>
+ 
+ </beans>

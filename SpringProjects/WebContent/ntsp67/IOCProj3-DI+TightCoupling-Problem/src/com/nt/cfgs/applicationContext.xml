@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<!-- Cfg Beans -->
+<bean id="dtdcCourier"   class="com.nt.beans.DTDC"/>
+<bean id="blueDartCourier"   class="com.nt.beans.BlueDart"/>
+
+<bean id="flipkart"  class="com.nt.beans.FlipKart">
+   <!-- <property name="dtdc"  ref="dtdcCourier"/> -->    
+    <property name="blueDart" ref="blueDartCourier"/>
+</bean>
+
+
+
+
+</beans>

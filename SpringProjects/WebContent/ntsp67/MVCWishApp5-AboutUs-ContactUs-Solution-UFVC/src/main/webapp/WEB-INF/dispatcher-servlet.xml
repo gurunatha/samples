@@ -1,0 +1,33 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- Controller classes -->
+	<bean id="wc" class="com.nt.controller.WishController" />
+   <bean id="ufvc"  class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>       
+    
+	<!-- Handler mapping -->
+	<bean id="suhm"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="home.htm">ufvc</prop>
+				<prop key="wish.htm">wc</prop>
+				<prop key="about_us.htm">ufvc</prop>
+				<prop key="contact_us.htm">ufvc</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Cfg View Resolver -->
+	<bean id="vr"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+</beans>
+

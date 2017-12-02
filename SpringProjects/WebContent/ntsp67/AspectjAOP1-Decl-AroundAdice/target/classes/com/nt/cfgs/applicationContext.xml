@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+ <!-- cfg target class  -->
+  <bean id="iac" class="com.nt.service.IntrAmountCalculator"/>
+  <!-- cfg Advice class  -->
+  <bean id="pma"  class="com.nt.aspect.PerformanceMonitoringAdvice"/>
+  <bean id="ca"  class="com.nt.aspect.CacheAdvice"/>
+  <bean id="laa"  class="com.nt.aspect.LogAroundAdvice"/>
+ <aop:config>
+    <aop:pointcut id="ptcPMAdvice"  expression="execution(* com.nt.service.IntrAmountCalculator.c*(..))"/>
+    <aop:pointcut id="ptcCacheAdvice" expression="execution(* com.nt.service.IntrAmountCalculator.calcCompoundIntrAmount(..))"/>
+   <aop:pointcut id="ptcLogAdvice" expression="execution(* com.nt.service.IntrAmountCalculator.*(..))"/>
+   
+<!--   cfg bean as Advice -->
+   <aop:aspect id="pmAdvice"  ref="pma" order="2">
+<!--      cfg method as Advice method -->
+     <aop:around  method="monitor" pointcut-ref="ptcPMAdvice"/>
+   </aop:aspect>
+   
+   <!--   cfg bean as Advice -->
+      <aop:aspect id="cacheAdvice"  ref="ca" order="0">
+<!--      cfg method as Advice method -->
+     <aop:around  method="caching" pointcut-ref="ptcCacheAdvice"/>
+   </aop:aspect>
+   
+   <!--   cfg bean as Advice -->
+      <aop:aspect id="logAdvice"  ref="laa" order="1">
+<!--      cfg method as Advice method -->
+     <aop:around  method="logging" pointcut-ref="ptcLogAdvice"/>
+   </aop:aspect>
+   
+   
+
+ </aop:config>
+
+</beans>

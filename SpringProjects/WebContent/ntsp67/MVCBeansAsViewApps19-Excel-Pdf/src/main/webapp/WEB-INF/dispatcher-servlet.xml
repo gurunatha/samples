@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- Handler mapping -->
+   <bean  class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+      <property name="mappings">
+         <props>
+            <prop key="home.htm">pvc</prop>
+             <prop key="process.htm">grc</prop>
+         </props>
+      </property>
+   </bean>
+   <!-- view classes cfg -->
+   <bean id="pdfView"  class="com.nt.view.MyPdfView"/>
+    <bean id="excelView"  class="com.nt.view.MyExcelView"/>
+   
+    <!-- controller class -->
+    <bean id="pvc"  class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+      <property name="viewName"  value="welcome"/>
+    </bean>
+    <bean id="grc"  class="com.nt.controller.GenerateReportController"/>
+
+ <!-- view resolver -->
+  
+    
+  <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+  
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> 
+      <property name="prefix" value="/WEB-INF/pages/"/>
+      <property name="suffix" value=".jsp"/>
+   </bean> 
+   
+     
+  
+    
+   
+</beans>

@@ -1,0 +1,14 @@
+<beans  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="remainder"  class="com.nt.beans.SecheduleRemainder">
+  <property name="date"  ref="dateFactory"/>
+</bean>
+<bean id="dateFactory"  class="com.nt.beans.DateFactoryBean">
+   <constructor-arg value="2010"/>
+   <constructor-arg value="1"/>
+   <constructor-arg value="5"/>
+</bean>
+</beans>

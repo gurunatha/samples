@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+ <!-- cfg target class -->
+  <bean id="bac"  class="com.nt.service.BillAmountCalculator"/>
+  <!-- Cfg Advice class -->
+  <bean id="expLogger"  class="com.nt.aspect.ExceptionLogger"/>
+  
+  <aop:config>
+      <aop:pointcut id="ptcExpLogger"  expression="execution(* com.nt.service.BillAmountCalculator.calc*(..))"/>
+       
+        <aop:aspect ref="expLogger">
+           <aop:after-throwing   method="logException"   pointcut-ref="ptcExpLogger"  throwing="e"/>
+        </aop:aspect> 
+      
+  
+  </aop:config>
+
+</beans>

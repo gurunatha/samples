@@ -1,0 +1,25 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+  
+  <bean id="engg" class="com.nt.beans.Engine">
+   <property name="engineId"  value="2345"/>
+   <property name="type"  value="diesel"/>
+    <qualifier value="e"/>
+ </bean>
+ 
+ <bean id="engg1" class="com.nt.beans.Engine">
+   <property name="engineId"  value="4345"/>
+   <property name="type"  value="petrol"/>
+   <qualifier value="e1"/>
+ </bean> 
+  
+  <bean id="viechle"  class="com.nt.beans.Viechle"/>
+	<context:annotation-config/>
+</beans>
+

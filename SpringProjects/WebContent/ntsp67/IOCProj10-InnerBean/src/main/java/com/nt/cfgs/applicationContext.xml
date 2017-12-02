@@ -1,0 +1,16 @@
+ <beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="lic"  class="com.nt.beans.LICCompany">
+   <property name="agent" >
+     <bean id="agent" class="com.nt.beans.LICAgent">
+        <property name="no"  value="1000"/>
+        <property name="name" value="insurance raja"/>
+     </bean>
+   </property>
+
+</bean>
+
+</beans>

@@ -1,0 +1,45 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- handler mapping cfg -->
+<bean  class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <property name="mappings">
+     <props>
+         <prop key="home.htm">pvc</prop>
+         <prop key="register.htm">rc</prop>
+     </props>
+  </property>
+</bean>
+
+  
+
+
+ <!-- controller class cfg -->
+ <bean id="pvc"  class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+       <property name="viewName"  value="welcome"/>
+ </bean>
+ 
+ <bean id="rc"  class="com.nt.controller.RegistrationController">
+     <property name="pages">
+         <list>
+            <value>page1Form</value>
+            <value>page2Form</value>
+            <value>page3Form</value>
+         </list>
+     </property>
+     <property name="commandClass"  value="com.nt.command.RegisterCommand"/>
+     <property name="commandName"  value="regCmd"/>
+ </bean>
+ 
+<!-- View Resolver cfg -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix"  value="/WEB-INF/pages/"/>
+    <property name="suffix"  value=".jsp"/>
+</bean>
+</beans>
+

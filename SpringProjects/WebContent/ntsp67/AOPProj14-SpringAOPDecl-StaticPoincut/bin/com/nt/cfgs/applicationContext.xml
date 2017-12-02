@@ -1,0 +1,55 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+ <!-- cfg Target class -->
+  <bean id="iac"  class="com.nt.service.IntrAmountCalculator"/>
+  
+  <!-- cfg Advice classes -->
+  <bean id="pmAdvice"  class="com.nt.aspect.PerformanceMonitoringAdvice"/>
+  <bean id="cacheAdvice"   class="com.nt.aspect.CacheAdvice"/>
+  <bean id="logAdvice"   class="com.nt.aspect.LogAroundAdvice"/>
+  
+  <!--  Cfg Poincut -->
+  <bean id="ptc1"  class="com.nt.pointcut.CommonStaticPointcut"/>
+  <bean id="ptc2" class="org.springframework.aop.support.NameMatchMethodPointcut">
+    <property name="mappedName"  value="calcIntrAmount"/>
+  </bean>
+  
+  <!--  Cfg Advisor -->
+  <bean id="pmAdvisor"  class="org.springframework.aop.support.DefaultPointcutAdvisor">
+         <property name="pointcut" ref="ptc1"/>
+         <property name="advice" ref="pmAdvice"/>  
+  </bean>
+  
+  <bean id="cacheAdvisor"  class="org.springframework.aop.support.DefaultPointcutAdvisor">
+         <property name="pointcut" ref="ptc2"/>
+         <property name="advice" ref="cacheAdvice"/>  
+  </bean>
+  
+  <bean id="logAdvisor"  class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+         <property name="advice" ref="logAdvice"/>
+         <property name="mappedNames">
+           <list>
+             <value>calcIntrAmount</value>
+             <value>calcCompoundIntrAmount</value>
+           </list>
+         </property>  
+  </bean>
+  
+  
+  
+  <!-- cfg ProxyFactoryBean -->
+  <bean id="pfb"  class="org.springframework.aop.framework.ProxyFactoryBean">
+       <property name="target"  ref="iac"/>
+       <property name="interceptorNames">
+          <list>
+             <value>cacheAdvisor</value>
+             <value>pmAdvisor</value>
+             <value>logAdvisor</value>
+          </list>
+       </property>
+  </bean>
+</beans>

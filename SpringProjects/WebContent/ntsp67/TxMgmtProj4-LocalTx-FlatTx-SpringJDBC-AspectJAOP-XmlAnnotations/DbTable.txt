@@ -1,0 +1,6 @@
+SQL> select * from  tx_account;
+
+     ACCNO HOLDER                  BALANCE
+---------- -------------------- ----------
+      1001 raja                        500
+      1002 ravi                       9000
