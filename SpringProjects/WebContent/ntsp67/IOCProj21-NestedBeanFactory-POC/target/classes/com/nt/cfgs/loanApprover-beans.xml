@@ -1,0 +1,16 @@
+
+<beans  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+ <bean id="loanDetails"  class="com.nt.beans.LoanDetails">
+   <property name="loanId"  value="1002"/>
+   <property name="loanType"  value="agriculture"/>
+   <property name="amount"  value="43434"/>
+</bean>
+
+<bean id="approver" class="com.nt.beans.LoanApprover">
+   <property  name="details"  ref="loanDetails"/>
+ </bean>
+</beans>

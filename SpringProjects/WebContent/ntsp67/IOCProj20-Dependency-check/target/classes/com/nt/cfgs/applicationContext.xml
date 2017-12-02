@@ -1,0 +1,26 @@
+
+<beans  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+<bean id="dt" class="java.util.Date">
+   <property name="year" value="90"/>
+   <property name="month" value="10"/>
+   <property name="date" value="10"/>
+</bean>
+
+ <bean id="person"  class="com.nt.beans.Person" dependency-check="none">
+       <property name="pid" value="1001"/>
+       <property name="pname" value="raja"/> 
+      <!--   <property name="address"  ref="addrs"/> -->
+        <property name="dob" ref="dt"/> 
+ </bean>
+ <bean id="addrs"  class="com.nt.beans.Address">
+    <property name="houseNo"  value="100-200"/>
+    <property name="street"  value="CDACLane"/>
+    <property name="area"  value="Ameerpet"/>
+ </bean>
+
+ 
+</beans>

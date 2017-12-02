@@ -1,0 +1,2 @@
+SQL> create table employee_tab(eno number(5) primary key,ename varchar2(20),eadd varchar2(20),bsalary number(10),
+            gsalary number(10),netSalary number(10));

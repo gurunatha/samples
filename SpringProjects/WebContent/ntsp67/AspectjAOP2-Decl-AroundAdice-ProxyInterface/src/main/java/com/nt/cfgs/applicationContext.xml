@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+ <!-- cfg target class  -->
+  <bean id="iac" class="com.nt.service.IntrAmountCalculatorImpl"/>
+  <!-- cfg Advice class  -->
+  <bean id="pma"  class="com.nt.aspect.PerformanceMonitoringAdvice"/>
+
+ <aop:config>
+    <aop:pointcut id="ptcPMAdvice"  expression="execution(* com.nt.service.IntrAmountCalculator.*(..))"/>
+   
+<!--   cfg bean as Advice -->
+   <aop:aspect id="pmAdvice"  ref="pma" order="2">
+<!--      cfg method as Advice method -->
+     <aop:around  method="monitor" pointcut-ref="ptcPMAdvice"/>
+   </aop:aspect>
+   
+
+ </aop:config>
+
+</beans>

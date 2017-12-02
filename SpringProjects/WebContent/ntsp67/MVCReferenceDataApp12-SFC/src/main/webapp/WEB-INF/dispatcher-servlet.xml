@@ -1,0 +1,39 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- Cfg Propetries file -->
+ <bean id="messageSource"  class="org.springframework.context.support.ResourceBundleMessageSource">
+   <property name="basename"  value="com/nt/commons/RegisterCmdValidator"/>
+ </bean>
+
+<!-- handler mapping cfg -->
+<bean  class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <property name="mappings">
+     <props>
+       <prop key="register.htm">rc</prop>
+     </props>
+  </property>
+</bean>
+
+<!-- controller cfg ... -->
+<bean id="rc"  class="com.nt.controller.RegistrationController">
+    <property name="formView" value="register"/>
+    <property name="commandClass" value="com.nt.command.RegisterCmd"/>
+    <property name="commandName" value="regCmd"/>
+    <property name="validator"  ref="regCmdValidator"/>
+</bean>
+<!--  validator cfg -->
+<bean id="regCmdValidator"  class="com.nt.validator.RegisterCmdValidator"/>
+
+<!-- View Resolver cfg -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix"  value="/WEB-INF/pages/"/>
+    <property name="suffix"  value=".jsp"/>
+</bean>
+</beans>
+

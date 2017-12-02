@@ -1,0 +1,63 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- 
+ <bean id="bnuhm" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+ controller class cfg
+ <bean id="/welcome.htm"  class="com.nt.controller.WelcomeController"/>
+ <bean id="/about.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+   <property name="viewName" value="about_us"/>
+ </bean>
+ --> 
+ 
+ <!--  Handler Mapping 
+ <bean id="suhm"  class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <property name="mappings">
+   <props>
+     <prop key="welcome.htm">wc</prop>
+     <prop key="about.htm">pvc</prop>
+    </props> 
+    </property> 
+ </bean>
+ 
+ Controller classes cfg
+ <bean id="wc"  class="com.nt.controller.WelcomeController"/>
+ <bean id="pvc" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+   <property name="viewName" value="about_us"/>
+ </bean>
+ --> 
+ 
+  <!-- Handler mappings -->
+ <bean id="surhm" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <property name="mappings">
+       <props>
+          <prop key="welcome.htm">wc1</prop>
+       </props>
+    </property>
+       <property name="order"  value="4"/>
+ </bean>
+ 
+  <bean id="cchm" class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+      <property name="order" value="2"/>
+  </bean>
+  <!-- Controller classes cfg -->
+ <bean id="wc"  class="com.nt.controller.WelcomeController"/>
+  <bean id="wc1"  class="com.nt.controller.Welcome1Controller"/>
+  <bean id="avc"  class="com.nt.controller.AboutusController"/>
+ 
+ <!-- <bean id="pvc" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+   <property name="viewName" value="about_us"/>
+ </bean> -->
+ 
+<!-- View Resolver cfg -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix"  value="/WEB-INF/pages/"/>
+    <property name="suffix"  value=".jsp"/>
+</bean>
+</beans>
+

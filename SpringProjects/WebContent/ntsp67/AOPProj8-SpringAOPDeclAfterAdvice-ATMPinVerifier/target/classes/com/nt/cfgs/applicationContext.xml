@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Cfg target bean -->
+     <bean id="pinGenerator"  class="com.nt.service.ATMPinGenerator"/>
+     <!-- Cfg advice class -->
+     <bean id="pinVerifier"  class="com.nt.aspect.ATMPinVerifier"/>
+     <!-- cfg ProxyFactoryBean that gives  Proxy class object -->
+     <bean id="pfb"  class="org.springframework.aop.framework.ProxyFactoryBean"> 
+        <property name="target"  ref="pinGenerator"/>
+        <property name="interceptorNames">
+           <list>
+             <value>pinVerifier</value>
+           </list>
+        </property>
+     </bean>
+	</beans>
+

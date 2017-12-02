@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- Handler mapping -->
+   <bean  class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+      <property name="mappings">
+         <props>
+            <prop key="home.htm">pvc</prop>
+            <prop key="wish.htm">wc</prop>
+         </props>
+      </property>
+   </bean>
+   <!-- Controler  -->
+   <bean id="pvc"  class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+     <property name="viewName"  value="home"/>
+   </bean>
+   <bean id="wc"  class="com.nt.controller.WishMessageController">
+       <property name="service"  ref="wishService"/>
+   </bean>
+   <!-- View Resolver -->
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/pages/"/>
+      <property name="suffix" value=".jsp"/>
+   </bean>
+</beans>

@@ -1,0 +1,39 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- handler mapping cfg -->
+<bean  class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <property name="mappings">
+     <props>
+        <prop key="home.htm">pvc</prop>
+        <prop key="operations.htm">coc</prop>
+     </props>
+  </property>
+</bean>
+
+
+
+ <!-- controller class cfg -->
+ <bean id="pvc"  class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+       <property name="viewName"  value="user"/>
+ </bean>
+ <bean id="coc"  class="com.nt.controller.CURDOperationsController">
+      <property name="methodNameResolver"  ref="pmnr"/>
+ </bean>
+ <bean id="pmnr"  class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+    <property name="paramName"  value="param"/>
+    <property name="defaultMethodName" value="invalid"/>
+ </bean>
+
+<!-- View Resolver cfg -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix"  value="/WEB-INF/pages/"/>
+    <property name="suffix"  value=".jsp"/>
+</bean>
+</beans>
+

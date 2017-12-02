@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+http://www.springframework.org/schema/batch 
+http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+
+	<import resource="applicationContext.xml"/>
+	
+	<bean id="fileReader"   class="org.springframework.batch.item.file.FlatFileItemReader">
+	   <property name="resource"  value="com/nt/files/Books.txt"/>
+	   <property name="lineMapper">
+	      <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+	          <property name="lineTokenizer">
+	              <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+	                   <property name="delimiter" value="\r\n"/>
+	              </bean>
+	          </property>
+	          <property name="fieldSetMapper">
+	             <bean class="org.springframework.batch.item.file.mapping.ArrayFieldSetMapper"/>
+	          </property>
+	      </bean>
+	   </property>
+	</bean>
+	
+ 
+    <bean id="customProcessor" class="com.nt.batch.CustomItemProcessor" />
+ 
+    <bean id="customWriter" class="com.nt.batch.CustomItemWriter" /> 
+    
+    <batch:job id="mySimpleJob" job-repository="jobRepository" parent="simpleJob">
+    	<batch:step id="step1">
+    		<batch:tasklet transaction-manager="transactionManager">
+    			<batch:chunk reader="fileReader" processor="customProcessor" 
+    						 writer="customWriter" commit-interval="1"/>
+    		</batch:tasklet>
+    	</batch:step>
+    </batch:job>   
+</beans>

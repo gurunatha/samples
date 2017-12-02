@@ -1,0 +1,32 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Problem : There no reusablity for certain bean properties across the 
+		multiple bean classes cfg <bean id="pulsor1" class="com.nt.beans.Bike"> <property 
+		name="bikeId" value="TSO7EN6677"/> <property name="make" value="Bajaj"/> 
+		<property name="engineCC" value="150cc"/> <property name="color" value="black"/> 
+		</bean> <bean id="pulsor2" class="com.nt.beans.Bike"> <property name="bikeId" 
+		value="TSO7EN6688"/> <property name="make" value="Bajaj"/> <property name="engineCC" 
+		value="150cc"/> <property name="color" value="black"/> </bean> -->
+	<!-- Solution1 <bean id="pulsor1" class="com.nt.beans.Bike"> <property name="bikeId" 
+		value="TSO7EN6677"/> <property name="make" value="Bajaj"/> <property name="engineCC" 
+		value="150cc"/> <property name="color" value="black"/> </bean> <bean id="pulsor2" 
+		class="com.nt.beans.Bike" parent="pulsor1"> <property name="bikeId" value="TSO7EN6688"/> 
+		</bean> -->
+	<!-- Solution2 -->
+	<bean id="basePulsor" class="com.nt.beans.Bike" abstract="true">
+		<property name="make" value="Bajaj" />
+		<property name="engineCC" value="150cc" />
+		<property name="color" value="black" />
+	</bean>
+
+	<bean id="pulsor1" class="com.nt.beans.Bike" parent="basePulsor">
+		<property name="bikeId" value="TSO7EN6688" />
+	</bean>
+	<bean id="pulsor2" class="com.nt.beans.Bike" parent="basePulsor">
+		<property name="bikeId" value="TSO7EN6699" />
+	</bean>
+</beans>

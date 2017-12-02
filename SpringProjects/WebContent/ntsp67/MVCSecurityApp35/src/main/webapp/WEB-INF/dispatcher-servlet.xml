@@ -1,0 +1,37 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- handler mapping cfg -->
+<bean  class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <property name="mappings">
+     <props>
+       <prop key="home.htm">pvc</prop>
+       <prop key="racList.htm">rlc</prop>
+       <prop key="403.htm">pvc1</prop>
+     </props>
+  </property>
+</bean>
+
+<!-- Controller classes -->
+  <bean id="pvc"  class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+      <property name="viewName"  value="home"/>
+  </bean>
+  <bean id="pvc1"  class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+      <property name="viewName"  value="403"/>
+  </bean>
+  
+  
+  <bean id="rlc"  class="com.nt.controller.RACListController"/>
+  
+<!-- View Resolver cfg -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix"  value="/WEB-INF/pages/"/>
+    <property name="suffix"  value=".jsp"/>
+</bean>
+</beans>
+
