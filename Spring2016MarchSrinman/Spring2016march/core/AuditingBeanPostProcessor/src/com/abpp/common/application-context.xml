@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="employeeDao" class="com.abpp.beans.EmployeeDao" />
+	<bean id="employeeVO" class="com.abpp.beans.EmployeeVO" scope="prototype" />
+	<bean id="employeeAgent" class="com.abpp.beans.EmployeeAgent">
+		<property name="employeeDao" ref="employeeDao" />
+		<lookup-method name="lookupEmployee" bean="employeeVO" />
+	</bean>
+	<bean id="valueObjectBeanPostProcessor" class="com.abpp.postprocessor.ValueObjectBeanPostProcessor" />
+
+</beans>

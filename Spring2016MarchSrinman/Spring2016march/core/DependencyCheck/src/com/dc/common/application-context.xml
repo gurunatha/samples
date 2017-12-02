@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="person" class="com.dc.beans.Person" dependency-check="all">
+		<property name="ssn" value="2" />
+		<property name="passport" ref="passport" />
+	</bean>
+
+	<bean id="passport" class="com.dc.beans.Passport"
+		dependency-check="simple">
+		<property name="passportNo" value="0" />
+		<property name="firstName" value="f1" />
+		<property name="lastName" value="l1" />
+	</bean>
+
+</beans>

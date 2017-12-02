@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="errors" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/products.htm">listProductsController</prop>
+				<prop key="/edit-product.htm">editProductFormController</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="listProductsController" class="com.pgm.controller.ListProductsController">
+		<property name="manageProductService" ref="manageProductService" />
+	</bean>
+
+	<bean id="editProductFormController" class="com.pgm.controller.EditProductFormController">
+		<property name="formView" value="edit-product" />
+		<property name="commandClass" value="com.pgm.command.ProductCommand" />
+		<property name="commandName" value="product" />
+		<property name="validator" ref="productCommandValidator" />
+		<property name="manageProductService" ref="manageProductService" />
+	</bean>
+
+	<bean id="productCommandValidator" class="com.pgm.validator.ProductCommandValidator" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+</beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="loanApprover" class="com.mba.beans.LoanApprover" />
+	<bean id="authenticationManager" class="com.mba.security.core.AuthenticationManager"
+		factory-method="getInstance" />
+
+	<bean id="securityAspect" class="com.mba.aspect.SecurityAspect">
+		<constructor-arg ref="authenticationManager" />
+	</bean>
+
+	<aop:config>
+		<aop:pointcut id="securityPointcut"
+			expression="execution(* com.mba.beans.LoanApprover.*(..))" />
+		<aop:aspect ref="securityAspect">
+			<aop:before method="authenticate" pointcut-ref="securityPointcut" />
+			<aop:before method="audit" pointcut-ref="securityPointcut" />
+		</aop:aspect>
+	</aop:config>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="loanCalculator" class="com.don.beans.LoanCalculator"
+		depends-on="cacheManager">
+		<property name="cache" ref="cache" />
+	</bean>
+	<bean id="cache" class="com.don.common.Cache" factory-method="getInstance" />
+	<bean id="cityRiPropsAccessor" class="com.don.accessor.CityRIPropsAccessorImpl">
+		<property name="key" value="cityRI" />
+	</bean>
+	<bean id="cacheManager" class="com.don.common.CacheManager">
+		<constructor-arg ref="cache" />
+		<constructor-arg>
+			<list value-type="com.don.accessor.IAccessor">
+				<ref local="cityRiPropsAccessor" />
+			</list>
+		</constructor-arg>
+	</bean>
+</beans>
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.pm.entities">
+	<class name="Product" table="PRODUCTS">
+		<id name="productId" column="PRODUCT_ID">
+			<generator class="increment" />
+		</id>
+		<property name="name" column="PRODUCT_NM" />
+		<property name="type" column="TYPE" />
+		<property name="price" column="PRICE" />
+		<property name="offerType" column="OFFER_TYPE" />
+		<many-to-one name="manufacturer" column="MANUFACTURER_ID" />
+		<set name="specifications">
+			<key column="PRODUCT_ID"/>
+			<one-to-many class="Specification"/>
+		</set>
+	</class>
+</hibernate-mapping>
+
+
+
+
+

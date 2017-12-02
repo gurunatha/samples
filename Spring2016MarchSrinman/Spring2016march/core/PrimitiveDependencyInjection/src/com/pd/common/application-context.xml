@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="person" class="com.pd.beans.Person">
+		<property name="firstName" value="john" />
+		<property name="lastName" value="B" />
+		<property name="age" value="24" />
+		<property name="gender" value="male" />
+	</bean>
+</beans>

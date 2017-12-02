@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.pm.entities">
+	<class name="Specification" table="SPECIFICATIONS">
+		<id name="specificationId" column="SPECIFICATION_ID">
+			<generator class="increment" />
+		</id>
+		<property name="specificationName" column="SPECIFICATION_NM" />
+		<property name="description" column="DESCR" />
+		<many-to-one name="product" column="PRODUCT_ID" />
+	</class>
+</hibernate-mapping>

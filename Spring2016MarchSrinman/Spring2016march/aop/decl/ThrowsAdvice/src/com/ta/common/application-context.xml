@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="thrower" class="com.ta.beans.Thrower" />
+	<bean id="globalExceptionLogging" class="com.ta.aspect.GlobalExceptionLoggingAspect" />
+	<aop:config>
+		<aop:pointcut expression="within(com.ta.beans.*) and args(a)"
+			id="pc1" />
+		<aop:aspect ref="globalExceptionLogging">
+			<aop:after-throwing method="logException"
+				pointcut-ref="pc1" throwing="iae" />
+			<aop:after method="close" pointcut="within(com.ta.beans.*)" />
+		</aop:aspect>
+	</aop:config>
+
+</beans>

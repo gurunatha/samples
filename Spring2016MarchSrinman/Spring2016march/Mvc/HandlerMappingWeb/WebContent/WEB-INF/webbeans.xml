@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Simple Url Handler Mapping -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> 
+		<property name="mappings"> <props> <prop key="/hm-doc.mvc">viewHandlerMappingDocController</prop> 
+		</props> </property> </bean> 
+	<bean id="viewHandlerMappingDocController" class="com.hm.controller.ViewHandlerMappingController" 
+		/> -->
+
+	<!-- BeanNameUrlHandlerMapping -->
+	<!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/> 
+	<bean name="/hm.mvc" class="com.hm.controller.ViewHandlerMappingController" /> -->
+
+	<!-- <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"> 
+		<property name="caseSensitive" value="true"/> 
+	</bean> 
+	<bean class="com.hm.controller.ViewHandlerMappingController"/> -->
+
+	<bean
+		class="org.springframework.web.servlet.mvc.support.ControllerBeanNameHandlerMapping">
+			<property name="urlSuffix" value=".mvc"/>
+	</bean>
+	<bean id="vhm" class="com.hm.controller.ViewHandlerMappingController" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+

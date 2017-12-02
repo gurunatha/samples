@@ -1,0 +1,7 @@
+<classpath>
+  <container id="BasicSecurity!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="H:/STSprojects/Spring/Security/BasicSecurity/WebContent/WEB-INF/lib/org.springframework.web-3.1.1.RELEASE.jar">
+      <source-attachment-path>/BasicSecurity/WebContent/WEB-INF/lib</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="toy" class="com.bp.beans.Toy" />
+	<bean id="remote" class="com.bp.beans.Remote" />
+	<bean id="instanceTrackerBeanPostProcessor" class="com.bp.postprocessors.InstanceTrackerBeanPostProcessor" />
+</beans>

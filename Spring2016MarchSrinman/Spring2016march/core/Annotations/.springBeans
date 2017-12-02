@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.6.4.201503051146-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/com/req/annon/req-context.xml</config>
+		<config>src/com/autowire/annon/autowire-context.xml</config>
+		<config>src/com/streotype/annon/stereotype-context.xml</config>
+		<config>src/com/dependson/annon/dependson-context.xml</config>
+		<config>src/com/val/annon/value-context.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
